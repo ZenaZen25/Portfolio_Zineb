@@ -481,12 +481,16 @@ section {
    GRID LAYOUT
 ================================= */
 
+
+
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* card più grandi */
-  gap: 40px;
-  max-width: 1400px; /* sezione più larga */
+  /* On passe le min de 320px à 400px ou 450px pour des cartes plus larges */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+  gap: 70px; /* Augmenté légèrement pour aérer avec les grandes cartes */
+  max-width: 1600px; /* On élargit aussi le conteneur parent pour profiter de l'espace */
   margin: auto;
+  padding: 0 20px; /* Sécurité pour les petits écrans */
 }
 
 /* ===============================
@@ -494,7 +498,7 @@ section {
 ================================= */
 
 #projects {
-  background: #0a0a0a;
+  background: #0a0a0a1a;
   padding: 160px 0; /* sezione più grande */
 }
 
@@ -744,7 +748,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: flex-start; /* Ancoraggio in alto per tutti i fili */
-  gap: 80px;
+  gap: 100px;
   margin-top: 80px;
   min-height: 350px; /* Spazio per l'oscillazione e i testi */
 }
@@ -767,17 +771,17 @@ section {
 /* FILO */
 .contact-item .string {
   width: 2px;
-  height: 120px;
+  height: 150px;
   background: linear-gradient(to bottom, #a855f7, #ec4899, #3b82f6, transparent);
   margin-bottom: -5px; /* Unisce il filo all'icona */
 }
 
 /* CERCHIO ICONA */
 .icon-box {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), #ffffff, rgba(59, 131, 246, 0.7));
+  background: linear-gradient(135deg, rgb(255, 255, 255), #ffffff, rgba(240, 30, 236, 0.7));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -811,9 +815,9 @@ section {
 }
 
 .contact-info a {
-  color: #3b82f6; /* Colore più leggibile, o bianco se preferisci */
+  color: #efeded7b; /* Colore più leggibile, o bianco se preferisci */
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 24px;
   font-weight: 500;
   text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
 }
@@ -901,7 +905,7 @@ footer {
   text-align: center;
   padding: 60px 0;
   opacity: 0.7;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid hsla(0, 0%, 100%, 0.08);
   margin-top: 10px;
 }
 /* testo */
