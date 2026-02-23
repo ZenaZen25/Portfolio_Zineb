@@ -170,7 +170,7 @@ function initSkillGalaxy() {
 
   let angle = 0;
   const numOrbits = orbits.length;
-  const radius = 250; // raggio uniforme per tutti i cerchi
+ const radius = window.innerWidth < 768 ? 110 : 250; // raggio uniforme per tutti i cerchi
 
   function animate() {
     angle += 0.2; // velocità di rotazione
@@ -194,43 +194,29 @@ function initSkillGalaxy() {
 
 
 function initAboutImageHover() {
-  const aboutImage = document.querySelector('.about-image img');
+  const aboutImage = document.querySelector(".about-image");
   if (!aboutImage) return;
 
-  aboutImage.addEventListener('mousemove', (e) => {
-    const rect = e.target.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
-    e.target.style.transform = `scale(2.5) translate(${x}px, ${y}px)`;
+  aboutImage.addEventListener("mousemove", (e) => {
+    const rect = aboutImage.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * 10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+
+    aboutImage.style.transform = `
+      perspective(800px)
+      rotateX(${-rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale(1.05)
+    `;
   });
 
-  aboutImage.addEventListener('mouseleave', () => {
-    aboutImage.style.transform = 'scale(1) translate(0, 0)';
+  aboutImage.addEventListener("mouseleave", () => {
+    aboutImage.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)";
   });
 }
-
-// ✅ Chiama tutte le funzioni quando il DOM è pronto
-document.addEventListener("DOMContentLoaded", () => {
-  initScrollReveal();
-  initSkillGalaxy();
-  initAboutImageHover();
-});
-
-document.querySelectorAll('.contact-item').forEach(item => {
-  item.addEventListener('click', () => {
-    item.classList.toggle('active');
-  });
-});
-
-const cards = document.querySelectorAll('.projects-list .project-card');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.2 });
-
-cards.forEach(card => observer.observe(card));

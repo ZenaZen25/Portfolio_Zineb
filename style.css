@@ -239,11 +239,6 @@ section {
 }
 
 /* animazione gradiente h2*/
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 
 
 .hero h3 {
@@ -930,4 +925,95 @@ footer {
     border-radius: 20px;
     border: 1px solid rgba(168, 85, 247, 0.3);
   }
+}
+
+/* ===============================
+   📱 MOBILE RESPONSIVE FIX
+================================= */
+
+@media (max-width: 768px) {
+
+  /* HERO */
+  .hero {
+    height: auto;
+    padding: 120px 20px 80px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  .hero h2 {
+    font-size: 1.2rem;
+  }
+
+  .hero h3 {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn-hero {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  /* PROJECTS GRID */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 10px;
+  }
+
+  /* SKILLS */
+  .skills-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .skills-galaxy {
+    width: 250px;
+    height: 250px;
+  }
+
+  /* CONTACT */
+  .contact-hanging-wrapper {
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  .contact-info {
+    position: static;
+    width: 100%;
+    text-align: center;
+  }
+
+  .contact-info a {
+    font-size: 16px;
+    word-break: break-word;
+  }
+
+  /* ABOUT IMAGE */
+  .about-image img {
+    width: 200px;
+  }
+
+}
+ /* // versione tablet // */
+ 
+@media (max-width: 1024px) {
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
 }
