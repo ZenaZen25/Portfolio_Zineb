@@ -1,5 +1,5 @@
 /* ===============================
-   RESET + BASE
+              BASE         
 ================================= */
 
 *,
@@ -17,7 +17,7 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-/* container globale — margini identici ovunque */
+/* container globale — margini  */
 .container {
   width: 100%;
   max-width: 1600px;
@@ -447,7 +447,7 @@ section {
 
 /* IMAGE */
 .about-image img {
-  width: 280px;
+  width: 380px;
   display: block;
   border-radius: 25px;
   transition: transform 0.4s ease;
@@ -629,6 +629,7 @@ section {
   color: white;
 }
 
+/* GLASS EFFECT */
 .skills-left.glass-effect {
   background: linear-gradient(135deg, #ef69fd6c, #585456, #aacbff, #a955f742);
   background-size: 400% 400%;
@@ -636,14 +637,14 @@ section {
   border: 1px solid rgba(255,255,255,0.08);
   backdrop-filter: blur(12px);
   box-shadow: 0 0 40px rgba(0,0,0,0.3);
-  padding: 40px;
   animation: gradientMove 8s ease infinite;
   transition: all 0.35s ease;
 }
 
 .skills-left.glass-effect:hover {
   transform: translateY(-16px) scale(1.05);
-  box-shadow: 0 0 80px rgba(168,85,247,0.4), 0 0 60px rgba(236,73,153,0.3);
+  box-shadow: 0 0 80px rgba(168,85,247,0.4),
+              0 0 60px rgba(236,73,153,0.3);
   animation: glowPulse 1.2s infinite;
 }
 
@@ -658,10 +659,23 @@ section {
   50% { box-shadow: 0 0 70px rgba(236,73,153,0.4); }
 }
 
-.skills-left h2 { font-size: 2rem; margin-bottom: 20px; }
-.skills-left p { font-size: 1.1rem; line-height: 1.8; opacity: 0.85; }
+.skills-left h2 { 
+  font-size: 2rem; 
+  margin-bottom: 20px; 
+}
 
-/* GALAXY SKILLS */
+.skills-left p { 
+  font-size: 1.1rem; 
+  line-height: 1.8; 
+  opacity: 0.85; 
+}
+
+
+
+
+
+/* ================= GALAXY ================= */
+
 .skills-galaxy {
   flex: 1 1 400px;
   position: relative;
@@ -684,7 +698,7 @@ section {
   text-align: center;
 }
 
-/* orbite e cerchi */
+/* ORBITS */
 .orbit {
   position: absolute;
   top: 50%;
@@ -700,6 +714,8 @@ section {
 .orbit6 { z-index: 6; }
 .orbit7 { z-index: 7; }
 
+
+/* SKILL CIRCLE */
 .skill-circle {
   width: 100px;
   height: 100px;
@@ -713,21 +729,73 @@ section {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.skill-circle img { width: 40px; margin-bottom: 5px; }
-.skill-label { font-size: 0.75rem; color: rgba(255,255,255,0.8); text-align: center; }
+.skill-circle img { 
+  width: 40px; 
+  margin-bottom: 5px; 
+}
+
+.skill-label { 
+  font-size: 0.75rem; 
+  color: rgba(255,255,255,0.8); 
+  text-align: center; 
+}
 
 .skill-circle:hover {
   transform: scale(1.2);
-  box-shadow: 0 0 15px rgba(168,85,247,0.4), 0 0 30px rgba(236,73,153,0.3);
+  box-shadow: 0 0 15px rgba(168,85,247,0.4),
+              0 0 30px rgba(236,73,153,0.3);
 }
 
-/* Responsive */
+
+/* ================= TABLET ================= */
+
 @media (max-width: 900px) {
-  .skills-container { flex-direction: column; gap: 40px; }
-  .skills-galaxy { width: 300px; height: 300px; }
-  .skills-center { font-size: 2rem; }
+  .skills-container { 
+    flex-direction: column; 
+    gap: 40px; 
+  }
+
+  .skills-galaxy { 
+    width: 300px; 
+    height: 300px; 
+  }
+
+  .skills-center { 
+    font-size: 2rem; 
+  }
 }
 
+
+/* ================= TELEFONO ================= */
+
+@media (max-width: 730px) {
+
+  .skills-container {
+    flex-direction: column;
+    align-items: flex-start; /* evita che venga tirato su */
+  }
+
+  .skills-galaxy {
+    width: 240px;
+    height: 240px;
+    margin-top: 70px;  /* spinta più sotto */
+    align-self: center;
+  }
+
+  .skill-circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .skill-circle img {
+    width: 28px;
+  }
+
+  .skill-label {
+    font-size: 0.6rem;
+  }
+
+}
 /* ===============================
     CONTACT SECTION
 ================================= */
