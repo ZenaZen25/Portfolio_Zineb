@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================
-   🌌 GALAXY BACKGROUND
+    GALAXY BACKGROUND
 ========================= */
 function initGalaxy() {
   // prende il canvas dove disegnare le stelle
@@ -19,8 +19,8 @@ function initGalaxy() {
   const ctx = canvas.getContext("2d");        // contesto 2D del canvas
   const hero = document.querySelector(".hero"); // sezione hero come riferimento dimensioni
   let stars = [];                             // array di stelle
-  const numStars = 800;                       // numero totale di stelle
-  const speed = 4 ;                          // velocità di movimento delle stelle
+  const numStars = 300;                       // numero totale di stelle
+  const speed = 0.5;                          // velocità di movimento delle stelle
 
   // funzione per ridimensionare il canvas quando cambia la finestra
   function resize() {
@@ -88,7 +88,7 @@ function initGalaxy() {
 
 
 /* =========================
-   🖱 PARALLAX
+    PARALLAX
 ========================= */
 function initParallax() {
   const hero = document.querySelector(".hero");
@@ -122,7 +122,7 @@ function initParallax() {
 }
 
 /* =========================
-   🎯 FILTER PROJECTS
+    FILTER PROJECTS
 ========================= */
 function initFilters() {
   window.filterProjects = function(category, el) {
@@ -149,7 +149,7 @@ function initNavbar() {
 }
 
 /* =========================
-   👀 SCROLL REVEAL
+   SCROLL REVEAL
 ========================= */
 function initScrollReveal() {
   const sections = document.querySelectorAll('.scroll-section');
@@ -173,7 +173,7 @@ function initSkillGalaxy() {
  const radius = window.innerWidth < 768 ? 110 : 250; // raggio uniforme per tutti i cerchi
 
   function animate() {
-    angle += 0.2; // velocità di rotazione
+    angle += 0.1; // velocità di rotazione
 
     orbits.forEach((orbit, index) => {
       // distribuzione uniforme angoli
