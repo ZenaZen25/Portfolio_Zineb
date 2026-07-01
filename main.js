@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  initGalaxy();          // inizializza lo sfondo a tema "galaxy" con stelle animate
-  initParallax();        // inizializza l'effetto parallasse sul mouse
-  initFilters();         // inizializza i filtri per i progetti
-  initNavbar();          // gestione dello scroll della navbar
-  initScrollReveal();    // animazioni di comparsa sezione allo scroll
-  initSkillGalaxy();     // animazione dei cerchi skills (galaxy skills)
+  initGalaxy(); // inizializza lo sfondo a tema "galaxy" con stelle animate
+  initParallax(); // inizializza l'effetto parallasse sul mouse
+  initFilters(); // inizializza i filtri per i progetti
+  initNavbar(); // gestione dello scroll della navbar
+  initScrollReveal(); // animazioni di comparsa sezione allo scroll
+  initSkillGalaxy(); // animazione dei cerchi skills (galaxy skills)
   initAboutImageHover(); // zoom interattivo sull'immagine About
 });
 
@@ -16,44 +16,49 @@ function initGalaxy() {
   const canvas = document.getElementById("galaxyCanvas");
   if (!canvas) return; // se non esiste il canvas esce
 
-  const ctx = canvas.getContext("2d");        // contesto 2D del canvas
+  const ctx = canvas.getContext("2d"); // contesto 2D del canvas
   const hero = document.querySelector(".hero"); // sezione hero come riferimento dimensioni
-  let stars = [];                             // array di stelle
-  const numStars = 300;                       // numero totale di stelle
-  const speed = 0.5;                          // velocità di movimento delle stelle
+  let stars = []; // array di stelle
+  const numStars = 300; // numero totale di stelle
+  const speed = 0.5; // velocità di movimento delle stelle
 
   // funzione per ridimensionare il canvas quando cambia la finestra
   function resize() {
-    const dpr = window.devicePixelRatio || 1;     // supporto display retina
-    canvas.width = hero.offsetWidth * dpr;       // larghezza canvas in px
-    canvas.height = hero.offsetHeight * dpr;     // altezza canvas in px
+    const dpr = window.devicePixelRatio || 1; // supporto display retina
+    canvas.width = hero.offsetWidth * dpr; // larghezza canvas in px
+    canvas.height = hero.offsetHeight * dpr; // altezza canvas in px
     canvas.style.width = hero.offsetWidth + "px"; // stile CSS larghezza
     canvas.style.height = hero.offsetHeight + "px"; // stile CSS altezza
-    ctx.setTransform(1,0,0,1,0,0);               // reset scala e trasformazioni
-    ctx.scale(dpr, dpr);                          // scala per display ad alta risoluzione
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset scala e trasformazioni
+    ctx.scale(dpr, dpr); // scala per display ad alta risoluzione
   }
 
   window.addEventListener("resize", resize); // aggiorna il canvas al resize
-  resize();                                  // chiamata iniziale
+  resize(); // chiamata iniziale
 
   // Classe per definire ogni stella
   class Star {
-    constructor() { this.reset(); } // quando creata, setta posizione casuale
+    constructor() {
+      this.reset();
+    } // quando creata, setta posizione casuale
 
     // imposta posizione, dimensione e colore casuali
     reset() {
-      this.x = Math.random() * hero.offsetWidth;   // posizione x
-      this.y = Math.random() * hero.offsetHeight;  // posizione y
-      this.z = Math.random() * hero.offsetWidth;   // profondità per effetto 3D
-      this.size = 2 + Math.random() * 3;           // dimensione stella
-      this.color = ["#ffffff", "#a855f7", "#ec4899", "#3b82f6"][Math.floor(Math.random() * 4)]; // colore casuale
+      this.x = Math.random() * hero.offsetWidth; // posizione x
+      this.y = Math.random() * hero.offsetHeight; // posizione y
+      this.z = Math.random() * hero.offsetWidth; // profondità per effetto 3D
+      this.size = 2 + Math.random() * 3; // dimensione stella
+      this.color = ["#ffffff", "#a855f7", "#ec4899", "#3b82f6"][
+        Math.floor(Math.random() * 4)
+      ]; // colore casuale
     }
 
     // aggiornamento della posizione ad ogni frame
     update() {
-      this.z -= speed;             // muove la stella verso di noi
-      if (this.z <= 0) {           // se supera il punto di vista
-        this.reset();              // resetta posizione e profondità
+      this.z -= speed; // muove la stella verso di noi
+      if (this.z <= 0) {
+        // se supera il punto di vista
+        this.reset(); // resetta posizione e profondità
         this.z = hero.offsetWidth; // riparte da lontano
       }
     }
@@ -61,8 +66,12 @@ function initGalaxy() {
     // disegna la stella sul canvas
     draw() {
       // calcolo posizione prospettica (effetto 3D)
-      let sx = (this.x - hero.offsetWidth / 2) * (hero.offsetWidth / this.z) + hero.offsetWidth / 2;
-      let sy = (this.y - hero.offsetHeight / 2) * (hero.offsetWidth / this.z) + hero.offsetHeight / 2;
+      let sx =
+        (this.x - hero.offsetWidth / 2) * (hero.offsetWidth / this.z) +
+        hero.offsetWidth / 2;
+      let sy =
+        (this.y - hero.offsetHeight / 2) * (hero.offsetWidth / this.z) +
+        hero.offsetHeight / 2;
       let r = this.size * (hero.offsetWidth / this.z) * 0.4; // raggio in prospettiva
 
       ctx.beginPath();
@@ -77,15 +86,17 @@ function initGalaxy() {
 
   // funzione ricorsiva per animare tutte le stelle
   function animate() {
-    ctx.fillStyle = "#050505";                  // sfondo nero
+    ctx.fillStyle = "#050505"; // sfondo nero
     ctx.fillRect(0, 0, hero.offsetWidth, hero.offsetHeight); // pulisce il canvas
-    stars.forEach((s) => { s.update(); s.draw(); }); // aggiorna e disegna ogni stella
-    requestAnimationFrame(animate);             // richiama animate per il prossimo frame
+    stars.forEach((s) => {
+      s.update();
+      s.draw();
+    }); // aggiorna e disegna ogni stella
+    requestAnimationFrame(animate); // richiama animate per il prossimo frame
   }
 
   animate(); // avvia l'animazione
 }
-
 
 /* =========================
     PARALLAX
@@ -94,7 +105,10 @@ function initParallax() {
   const hero = document.querySelector(".hero");
   if (!hero) return;
   const elements = document.querySelectorAll(".move");
-  let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
+  let mouseX = 0,
+    mouseY = 0,
+    currentX = 0,
+    currentY = 0;
 
   hero.addEventListener("mousemove", (e) => {
     const rect = hero.getBoundingClientRect();
@@ -125,14 +139,17 @@ function initParallax() {
     FILTER PROJECTS
 ========================= */
 function initFilters() {
-  window.filterProjects = function(category, el) {
+  window.filterProjects = function (category, el) {
     const cards = document.querySelectorAll(".project-card");
     const buttons = document.querySelectorAll(".btn-filter");
     buttons.forEach((btn) => btn.classList.remove("active"));
     el.classList.add("active");
 
     cards.forEach((card) => {
-      card.style.display = category === "all" || card.classList.contains(category) ? "block" : "none";
+      card.style.display =
+        category === "all" || card.classList.contains(category)
+          ? "block"
+          : "none";
     });
   };
 }
@@ -142,35 +159,62 @@ function initFilters() {
 ========================= */
 function initNavbar() {
   const navbar = document.querySelector(".navbar");
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
+
   if (!navbar) return;
+
   window.addEventListener("scroll", () => {
     navbar.classList.toggle("scrolled", window.scrollY > 50);
   });
+
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("mobile-active");
+      hamburger.classList.toggle("active");
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("mobile-active");
+        hamburger.classList.remove("active");
+      });
+    });
+  }
 }
 
 /* =========================
    SCROLL REVEAL
 ========================= */
 function initScrollReveal() {
-  const sections = document.querySelectorAll('.scroll-section');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) entry.target.classList.add('active');
-    });
-  }, { threshold: 0.15 });
-  sections.forEach(section => observer.observe(section));
+  const sections = document.querySelectorAll(".scroll-section");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("active");
+      });
+    },
+    { threshold: 0.15 },
+  );
+  sections.forEach((section) => observer.observe(section));
 }
 
 ////////////////////  SKILL GALAXY /////////////////////
 
 function initSkillGalaxy() {
-  const orbits = document.querySelectorAll('.orbit');
+  const orbits = document.querySelectorAll(".orbit");
   if (!orbits.length) return;
 
   let angle = 0;
   const numOrbits = orbits.length;
- const radius = window.innerWidth < 768 ? 110 : 250; // raggio uniforme per tutti i cerchi
+  //  const radius = window.innerWidth < 768 ? 110 : 250; // raggio uniforme per tutti i cerchi
+
+ const radius =
+  window.innerWidth < 480 ? 85 :
+  window.innerWidth < 768 ? 105 :
+  window.innerWidth < 1250 ? 140 :
+  220;
 
   function animate() {
     angle += 0.1; // velocità di rotazione
@@ -189,9 +233,6 @@ function initSkillGalaxy() {
 
   animate();
 }
-
-  animate();
-
 
 function initAboutImageHover() {
   const aboutImage = document.querySelector(".about-image");
@@ -217,6 +258,7 @@ function initAboutImageHover() {
   });
 
   aboutImage.addEventListener("mouseleave", () => {
-    aboutImage.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)";
+    aboutImage.style.transform =
+      "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)";
   });
 }
