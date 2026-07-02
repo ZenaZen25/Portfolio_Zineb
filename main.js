@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  initGalaxy(); // inizializza lo sfondo a tema "galaxy" con stelle animate
+  // Solo su tablet e PC
+  if (window.innerWidth > 768) {
+    initGalaxy(); // inizializza lo sfondo a tema "galaxy" con stelle animate
+    // Solo su tablet e PC
+    initParallax();
+    initAboutImageHover();
+  }
+
   initParallax(); // inizializza l'effetto parallasse sul mouse
   initFilters(); // inizializza i filtri per i progetti
   initNavbar(); // gestione dello scroll della navbar
@@ -210,11 +217,14 @@ function initSkillGalaxy() {
   const numOrbits = orbits.length;
   //  const radius = window.innerWidth < 768 ? 110 : 250; // raggio uniforme per tutti i cerchi
 
- const radius =
-  window.innerWidth < 480 ? 85 :
-  window.innerWidth < 768 ? 105 :
-  window.innerWidth < 1250 ? 140 :
-  220;
+  const radius =
+    window.innerWidth < 480
+      ? 115
+      : window.innerWidth < 768
+        ? 140
+        : window.innerWidth < 1250
+          ? 165
+          : 220;
 
   function animate() {
     angle += 0.1; // velocità di rotazione
