@@ -358,20 +358,25 @@ section {
 /* Fa galleggiare leggermente i bottoni come se fossero nel hero */
 @keyframes float {
   0% {
-    transform: translateY(0px);
+    transform: translateY(0);
   }
+
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-6px);
   }
+
   100% {
-    transform: translateY(0px);
+    transform: translateY(0);
   }
 }
+
+/* .btn-hero {
+  animation: float 2.5s ease-in-out infinite;
+} */
 
 .btn-hero {
-  animation: float 2.5s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
 }
-
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
   .hero-buttons {
@@ -587,7 +592,6 @@ section {
 .tag-container {
   margin-top: auto;
 }
- 
 
 /* .project-features {
   padding-left: 18px;
