@@ -585,8 +585,9 @@ section {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  min-height: 50px;
+  min-height: 60px;
   margin: 16px 0;
+  padding-top: 25px;
 }
 
 .tag-container {
